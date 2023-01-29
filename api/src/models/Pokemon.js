@@ -5,15 +5,97 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('pokemon', {
     id:{
-      type: DataTypes.UUID,
+      type: DataTypes.UUID, /*UUID: Es un numero unico que se utiliza como identificador. Tiene x caracteres en total. Cada uno de los caracteres va ser un extra decimal, es decir puede tomar valores de 0 al 9, de la A a la f. Se forma de manera aleatoria dependiendo de la version del estandar que estamos utilizando. 36 caracteres(32 digitos mas 4 guiones), 16 bytes, 128 bits */
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
       allowNull: false,
-      defaultValue: DataTypes.UUIDV4
+      unique: true
     },
     name: {
       type: DataTypes.STRING,
+      validate:{
+        isAlpha: true,
+        len: [0, 30]
+      },
+      allowNull: false,
+      unique: true
+    },
+    hp:{
+      type: DataTypes.INTEGER,
+      validate:{
+        isNumeric: true,
+        min: 1,
+        max: 999,
+      },
+      defaultValue: 10,// En caso de no recibir un valor el default va a ser '10'
+      allowNull: false
+    },
+    attack:{
+      type: DataTypes.INTEGER,
+      validate:{
+        isNumeric: true,
+        min: 1,
+        max: 999
+      },
+      defaultValue: 10,// En caso de no recibir un valor el default va a ser '10'
+      allowNull: false
+    },
+    defense:{
+      type: DataTypes.INTEGER,
+      validate:{
+        isNumeric: true,
+        min: 1,
+        max: 999
+      },
+      defaultValue: 10,// En caso de no recibir un valor el default va a ser '10'
+      allowNull: false
+    },
+    speed:{
+      type: DataTypes.INTEGER,
+      validate:{
+        isNumeric: true,
+        min: 1,
+        max: 999
+      },
+      defaultValue: 10,// En caso de no recibir un valor el default va a ser '10'
+      allowNull: false
+    },
+    height:{
+      type: DataTypes.INTEGER,
+      validate:{
+        isNumeric: true,
+        min: 1,
+        max: 999
+      },
+      defaultValue: 10,// En caso de no recibir un valor el default va a ser '10'
       allowNull: false,
     },
-    
+    weight:{
+      type: DataTypes.INTEGER,
+      validate:{
+        min: 1,
+        max: 9999
+      },
+      defaultValue: 10,// En caso de no recibir un valor el default va a ser '10'
+      allowNull: false
+    },
+    image:{
+      type: DataTypes.STRING,
+      defaultValue: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/d7621acf3e5b732050acd51c2f16cdba/large.gif",
+      validate:{
+        isAlpha: true,
+        isUrl: true
+      },
+      allowNull: false
+    },
+    createInDb:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    }
+  },{
+    timestamps: false // sequalize crea automaticamente los modelos createAt y updateAt, esto lo cancelamos con el timestamps.
+    //freezeTableName: true,
+    // nos sirve para verificar que el nombre de la tabla es igual al nombre del modelo que le estamos enviando.
   });
 };

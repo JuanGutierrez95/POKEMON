@@ -30,10 +30,26 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Pokemon } = sequelize.models;
+const { Pokemon, Type } = sequelize.models;
 
+Pokemon.belongsToMany(Type, { through: "pokemon_type" });
+Type.belongsToMany(Pokemon, { through: "pokemon_type" });
+/*
+Al pasar una cadena a through lo anterior, le pedimos a Sequelize que genere automáticamente un modelo llamado tabla pokemon_type directa (también conocida como tabla de unión), con solo dos columnas: y . Se establecerá una clave única compuesta en estas dos columnas. pokemonId typeId
+*/
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+
+
+/************COMANDOS SQL Shell *************
+ * 
+ *  \c pokemon 
+ *   \dt
+ *   SELECT * FROM "pokemon_type";
+ *   SELECT * FROM "pokemons";
+ *   SELECT * FROM "types";
+ *   \q
+*/  
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
