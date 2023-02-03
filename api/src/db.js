@@ -32,8 +32,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Pokemon, Type } = sequelize.models;
 
-Pokemon.belongsToMany(Type, { through: "pokemon_type" });
-Type.belongsToMany(Pokemon, { through: "pokemon_type" });
+Pokemon.belongsToMany(Type, { through: "pokemon_type" });//un pokemon, en mi tabla de pokemon pertenece a muchos types, de mi tabla de types y esto se refleja en mi tabla intermedia, pokemon_type     //pokemon_type es la tabla intermedia
+Type.belongsToMany(Pokemon, { through: "pokemon_type" }); //mi tabla de types, tiene un type que pertenece a muchos pokemones de mi tabla de types, mediante a mi tabla de intermedio pokemon_type
 /*
 Al pasar una cadena a through lo anterior, le pedimos a Sequelize que genere automáticamente un modelo llamado tabla pokemon_type directa (también conocida como tabla de unión), con solo dos columnas: y . Se establecerá una clave única compuesta en estas dos columnas. pokemonId typeId
 */
