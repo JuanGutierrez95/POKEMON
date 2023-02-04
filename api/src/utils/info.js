@@ -1,6 +1,7 @@
 //TODA LA INFO DE LA API
 const axios = require( "axios" );
-
+const { Pokemon, Type } = require("../db");
+const { Op } = require("sequelize");
 
 //Listado de los pokemones desde pokeapi
 //usar async await
@@ -8,13 +9,15 @@ const axios = require( "axios" );
 //un mapeo de los datos que nos piden
 //en la api nos traen 20 en una pagina * 2
 
-const pokemonFromApi = async () => {
-    const firstPage = await axios.get("https://pokeapi.co/api/v2/pokemon")
-    const secondPage = await axios.get("https://pokeapi.co/api/v2/pokemon?offset=20&limit=20")
-    const linkTotal = firstPage.data.results.concat(secondPage.data.results) 
-    const infoApi = linkTotal.map((pokemon) => axios.get(pokemon.url))
-    let infoPokemons = Promise.all(infoApi).then((url) => {
-        let info = []
+/* Esta Funcion es para obtener toda la info de la api Pokemon */
+const getApiPokemons = async () => {
+    try {
+        const firstPage = await axios.get("https://pokeapi.co/api/v2/pokemon") //Es una promesa. Hago la consulta a la api Pokemon
+    const secondPage = await axios.get("https://pokeapi.co/api/v2/pokemon?offset=20&limit=20")  // Promesa, Hago la segunda consulta a la api
+    const linkTotal = firstPage.data.results.concat(secondPage.data.results) // concatenamos firstPage y secondPage para traernos los datos necesarios, el array de Pokemon lo tengo en un objeto, en ese objeto tenemos la propiedad data y results. La respuesta me viene en la data
+    const infoApi = linkTotal.map((pokemon) => axios.get(pokemon.url)) //en la propiedad URL se encuentra los datos que preciso.
+    let infoPokemons = Promise.all(infoApi).then((url) => { //Tenemos una promesa que lo estamos manejando con el .then correspondiente a la promesa. Promise.all recibimos cada respuesta de la url info
+        let info = [] //creo un array de objects info y pusheo la informacion que necesito
         url.map((p) => {
             info.push({
                 id: p.data.id,
@@ -29,16 +32,73 @@ const pokemonFromApi = async () => {
                     name: t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1)
                 })),
                 image: p.data.sprites.other.dream_world.front_default,
+                origin: "api"
             })
         })
         return info;
     })
     return infoPokemons;
+    } catch (error) {
+        console.log({error: error.message})
+    }
+}
+/*Funcion nos trae los datos de pokemon desde la db*/
+
+//findAll me retorna una promesa, yo espero a que se resuelve esta promesa para que entonces ese valor de resolucion se almacena en esta variable. El async no es el punto de partida
+//Modularizamos
+const getDbPokemons = async () => {
+    try {
+        const dbPokemons = await Pokemon.findAll({// 
+            where: { //La where opción se utiliza para filtrar la consulta
+                name: {[Op.iLike] : `%name%`} //el Op hace una evaluacion
+            },
+            include: {/* Incluido el modelo Tipos y solo devolviendo el atributo de nombre. */
+                model: Type,
+                attributes: ['name'],
+                through: {
+                    attributes: [],
+                }
+            }
+    });
+    //obtener todos los pokemons de la base de datos + sanitizar
+    //Limpia todo y me devuelve un array con los datos que queremos
+    const dbPokemonsClean = dbPokemons.map((pokemon) => {
+        return {
+            id: pokemon.id,
+            hp: pokemon.hp,
+            attack: pokemon.attack,
+            defense: pokemon.defense,
+            speed: pokemon.speed,
+            height: pokemon.height,
+            weight: pokemon.weight,
+            image: pokemon.image,
+            types: pokemon.types,
+            origin: "db"
+        }
+    }) 
+    return dbPokemonsClean;
+    } catch (error) {
+        console.log({error: error.message})
+    }
+
 }
 
-//25:20
+/* Concatenamos la funcion getApiPokemons y getDbPokemons */
+const getAllPokemons = async ()=>{ //si es una funcion async, me retorna una promesa.
+    try {
+        const apiPokemons = await getApiPokemons();//me trae los pokemons de la api, a traves de esta funcion
+        const dbPokemons = await getDbPokemons(); //me trae los pokemons de la base de datos, a traves de esta funcion
+        return [...apiPokemons, ...dbPokemons]; //concatenamos dbPokemons y apiPokemons
+    } catch (error) {
+        console.log({error: error.message})
+    }
+}
+
+
 
 
 module.exports = {
-    pokemonFromApi
+    getApiPokemons,
+    getDbPokemons,
+    getAllPokemons,
 }
