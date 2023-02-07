@@ -14,13 +14,13 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       validate:{
-        isAlpha: true,
-        len: [0, 30]
+        isAlpha: true, 
+        len: [0, 30] 
       },
       allowNull: false, //No me podes dejar el nombre en blanco,no podes no mandarle el nombre si quere crear algo aca. No te permito null 
-      unique: true
+      unique: true 
     },
-    hp:{
+    hp:{ 
       type: DataTypes.INTEGER,
       validate:{
         isNumeric: true,
@@ -83,7 +83,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       defaultValue: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/d7621acf3e5b732050acd51c2f16cdba/large.gif",
       validate:{
-        isAlpha: true,
         isUrl: true
       },
       allowNull: false

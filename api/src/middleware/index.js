@@ -1,5 +1,5 @@
 const validatePokemon = (req, res, next) => {
-
+    
     next()
 }
 
