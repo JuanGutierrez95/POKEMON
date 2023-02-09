@@ -50,7 +50,7 @@ const getPokemon = async ( req, res ) =>{
 const createPokemon = async ( req, res )=>{
     try {
         let { 
-        name, hp, attack, defense, speed, height, weight, types, image, createInDb} = req.body;
+        name, hp, attack, defense, speed, height, weight, types, sprite, createInDb} = req.body;
         
         let newPokemon = await Pokemon.create({
             name: name.charAt(0).toUpperCase() + name.slice(1).toLowerCase(),
@@ -60,7 +60,7 @@ const createPokemon = async ( req, res )=>{
             defense,
             height,
             weight,
-            image : image ? image : "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/d7621acf3e5b732050acd51c2f16cdba/large.gif",
+            sprite : sprite ? sprite : "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/d7621acf3e5b732050acd51c2f16cdba/large.gif",
             createInDb
         })
        let typesDb = await Type.findAll({

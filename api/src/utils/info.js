@@ -35,7 +35,7 @@ const getApiPokemons = async () => {
                           t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1),
                       }) 
                   ),
-                image: p.data.sprites.other.dream_world.front_default,
+                sprite: p.data.sprites.other.dream_world.front_default,
             
             })
         })

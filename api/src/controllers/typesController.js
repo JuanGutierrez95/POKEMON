@@ -1,9 +1,9 @@
 const {Type} = require("../db")
-const axios = require("axios")
+const axios = require("axios");
+const { getAllPokemons } = require("../utils/info");
  
 
 const getTypes = async ( req, res ) => {
-    //const typeNormal = await Type.findOne({where: {name:'normal'}});
     const typeDb = await Type.findAll();
     if(!typeDb.length) {
         try {
@@ -21,8 +21,39 @@ const getTypes = async ( req, res ) => {
 }
 }
 
+/*
+let typesApi = await axios.get(`https://pokeapi.co/api/v2/type`);
+    let typesName = typesApi.data.results.map(t => t.name);
+    for(let i = 0; i < typesName.length; i++) {
+        Type.findOrCreate({
+            where: {name: typesName[i]}
+        })
+    }
+    const allTypes = await Type.findAll(
+       
+    )
+    res.status(200).send(allTypes)
+*/
 
 
-module.exports = {
+/*
+
+ */
+
+/*const apiUrlTypes = await axios.get('https://pokeapi.co/api/v2/type') //accedo al endpoint de type que me da la Api
+    const types = apiUrlTypes.data.results.map(el => el.name)             //me guardo el nombre de de c/tipo en el array types
+    types.forEach(t => {                                  //recorro el array y por c/elm creo una entrada en la db Tipo
+        Type.findOrCreate({         //.findOrCreate() si encuentra el tipo, lo muestra en la db y si no, lo crea en la db. Si uso .create() cada vez que haga una peticion me creará los 20 tipos.Metodos de sequelize
+            where: {
+                name: t,
+            }
+        })
+    });
+
+    const allTypes = await Type.findAll();  //guardo todo lo que haya en la db Tipo (nombre + id de c/tipo).
+    res.status(200).send(allTypes);  //devuelvo solo la info de la db. Con esto me evito recorrer la api en cada peticion
+*/
+
+    module.exports = {
     getTypes
 }
