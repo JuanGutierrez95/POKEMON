@@ -87,7 +87,7 @@ module.exports = (sequelize) => {
       },
       allowNull: false
     },
-    createInDb:{ //Para que nos sirve el createInDb? Porque si queremos hacer un llamado a la base de datos. Cuando se hace una distencion entre lo que me trae la api y la base de datos. Es mucho mas facil acceder al pokemon que yo cree en la base de datos. Con esta propiedad, porque basicamente mi pokemon en la base de datos la va a tener y todo el resto no. Lo seteo y le digo que es un boolen, defaultValue true. 
+    createdInDb:{ //Para que nos sirve el createInDb? Porque si queremos hacer un llamado a la base de datos. Cuando se hace una distencion entre lo que me trae la api y la base de datos. Es mucho mas facil acceder al pokemon que yo cree en la base de datos. Con esta propiedad, porque basicamente mi pokemon en la base de datos la va a tener y todo el resto no. Lo seteo y le digo que es un boolen, defaultValue true. 
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,

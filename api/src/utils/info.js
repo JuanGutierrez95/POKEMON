@@ -28,15 +28,10 @@ const getApiPokemons = async () => {
                 speed: p.data.stats.find(s => s.stat.name === "speed").base_stat,
                 height: p.data.height,
                 weight: p.data.weight,
-                types: p.data.types.map(
-                    (t) =>
-                      (t = {
-                        name:     
-                          t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1),
-                      }) 
-                  ),
+                types: p.data.types.length < 2 ? 
+                [{name: p.data.types[0].type.name}] :
+                 [{name: p.data.types[0].type.name}, {name: p.data.types[1].type.name}],
                 sprite: p.data.sprites.other.dream_world.front_default,
-            
             })
         })
         
