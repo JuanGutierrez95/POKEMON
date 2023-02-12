@@ -1,6 +1,6 @@
 const {Type} = require("../db")
 const axios = require("axios");
-const { getAllPokemons } = require("../utils/info");
+//const { getAllPokemons } = require("../utils/info");
 
 const getTypes = async ( req, res ) => {
     const typeDb = await Type.findAll();
@@ -15,10 +15,7 @@ const getTypes = async ( req, res ) => {
             res.status(404).send('error');
         };
     } else {
-        //const types = 
-        //const typesName = typeDb.map(t => t.name); //regresa todo en otra variable
-        res.status(200).send(typeDb); 
-        console.log({typeDb})
+        res.status(200).send(typeDb);
 }
 }
     module.exports = {

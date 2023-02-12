@@ -28,16 +28,12 @@ const getApiPokemons = async () => {
                 speed: p.data.stats.find(s => s.stat.name === "speed").base_stat,
                 height: p.data.height,
                 weight: p.data.weight,
-                types: p.data.types.length < 2 ? 
-                [{name: p.data.types[0].type.name}] :
-                 [{name: p.data.types[0].type.name}, {name: p.data.types[1].type.name}],
                 sprite: p.data.sprites.other.dream_world.front_default,
+                types: p.data.types.length < 2 ? [{name: p.data.types[0].type.name}] : [{name: p.data.types[0].type.name}, {name: p.data.types[1].type.name}],
             })
         })
-        
         return info;
     })
-    //console.log(infoPokemons + " holaaa")
     return infoPokemons;
     } catch (error) {
         console.log({error: error.message})
@@ -50,9 +46,6 @@ const getApiPokemons = async () => {
 const getDbPokemons = async () => {
     try {
         const dbPokemons = await Pokemon.findAll({// 
-            //where: { //La where opción se utiliza para filtrar la consulta
-              //name: {[Op.iLike] : '%name%'} //el Op hace una evaluacion
-            //},
             include: {/* Incluido el modelo Tipos y solo devolviendo el atributo de nombre. */
                 model: Type, //traeme el Type
                 attributes: ['name'], //traeme el name
@@ -60,7 +53,7 @@ const getDbPokemons = async () => {
                     attributes: [],
                 }
             } 
-    });
+    })
     //obtener todos los pokemons de la base de datos + sanitizar
     //Limpia todo y me devuelve un array con los datos que queremos
     /*const dbPokemonsClean = dbPokemons.map((pokemon) => {
@@ -78,7 +71,6 @@ const getDbPokemons = async () => {
         }
     })
     return dbPokemonsClean;*/ 
-    
     return dbPokemons;
     } catch (error) {
         console.log({error: error.message})
@@ -97,11 +89,8 @@ const getAllPokemons = async ()=>{ //si es una funcion async, me retorna una pro
     }
 }
 
-
-
 module.exports = {
     getApiPokemons,
     getDbPokemons,
     getAllPokemons,
-    
 }

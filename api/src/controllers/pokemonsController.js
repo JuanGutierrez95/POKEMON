@@ -1,6 +1,5 @@
 const { getAllPokemons } = require("../utils/info")
 const { Pokemon, Type } = require("../db");
-const { Op } = require("sequelize");
 //async await = Es simular un momento de sincronia dentro de la naturaleza asincronica que tiene node. Una funcion async me devuelve una promesa 
 //promesa usando .then = la funcion se va a ejecutar cuando la promesa se resuelva, pero mientras tanto la ejecucion va a continuar 
 
@@ -35,9 +34,7 @@ const getPokemon = async ( req, res ) =>{
     const pokemonsAll = await getAllPokemons();
     if( id ){
         const pokemonId = pokemonsAll.filter((p) => p.id == id);
-        pokemonId.length ? 
-        res.status(200).json(pokemonId) : 
-        res.status(404).send(`Pokemon: ${id} not found`)
+        pokemonId.length ? res.status(200).json(pokemonId) : res.status(404).send(`Pokemon: ${id} not found`)
     }
 }
 
