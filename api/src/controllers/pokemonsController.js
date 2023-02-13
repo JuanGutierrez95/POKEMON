@@ -9,7 +9,7 @@ const getPokemons = async ( req, res )=>{ //el async trabaja de manera asincrona
     const pokemonsAll = await getAllPokemons();
     if( name ){
         const pokemonName = pokemonsAll.filter((p) => p.name.toLowerCase().includes(name.toLowerCase()));
-        pokemonName.length ? res.status(200).json(pokemonName) : res.status(404).send(`Pokemon: ${name} not found`);
+        pokemonName.length ? res.status(200).json(pokemonName) : res.status(404).send(`Pokemon not found for ${name} `);
     }else{
         res.status(200).json(pokemonsAll);
     }
@@ -34,7 +34,7 @@ const getPokemon = async ( req, res ) =>{
     const pokemonsAll = await getAllPokemons();
     if( id ){
         const pokemonId = pokemonsAll.filter((p) => p.id == id);
-        pokemonId.length ? res.status(200).json(pokemonId) : res.status(404).send(`Pokemon: ${id} not found`)
+        pokemonId.length ? res.status(200).json(pokemonId) : res.status(404).send(`Pokemon not found for ${id}`)
     }
 }
 
@@ -45,7 +45,6 @@ const createPokemon = async ( req, res )=>{
     try {
         let { 
         name, hp, attack, defense, speed, height, weight, types, sprite, createdInDb} = req.body;
-        console.log(req.body)
         let newPokemon = await Pokemon.create({
             name: name.charAt(0).toUpperCase() + name.slice(1).toLowerCase(),
             hp,
@@ -62,14 +61,11 @@ const createPokemon = async ( req, res )=>{
             name: types //dentro del modelo Type tengo que buscar los types que coincida con el types que le pasamos por body
           },         
         })
-        console.log({typesDb})
         newPokemon.addType(typesDb) //el add es un metodo de sequelize, basicamente lo que hace es traerme de la tabla de lo que le pasamos typesDb
-        ? res.status(200).json(newPokemon) : res.status(404).send('not found')
+        ? res.status(200).send('El Pokemon ha sido creado con éxito') : res.status(404).send({error: 'El Pokemon no ha sido creado con éxito'})
     } catch (error) {  
         console.log({error: error.message})
     } 
-       
-    
 }
 
 

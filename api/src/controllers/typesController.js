@@ -12,8 +12,8 @@ const getTypes = async ( req, res ) => {
             const allTypes = await Type.findAll();
             res.status(200).send(allTypes); 
         } catch (error) {
-            res.status(404).send('error');
-        };
+            res.status(404).send({error: "error"});
+        }; 
     } else {
         res.status(200).send(typeDb);
 }

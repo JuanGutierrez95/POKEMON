@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       validate:{
         isAlpha: true, 
-        len: [0, 30] 
+        len: [0, 40] 
       },
       allowNull: false, //No me podes dejar el nombre en blanco,no podes no mandarle el nombre si quere crear algo aca. No te permito null 
       unique: true 
@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
       validate:{
         isNumeric: true,
         min: 1,
-        max: 999,
+        max: 500,
       },
       defaultValue: 10,// En caso de no recibir un valor el default va a ser '10'
       allowNull: false
@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
       validate:{
         isNumeric: true,
         min: 1,
-        max: 999
+        max: 500
       },
       defaultValue: 10,// En caso de no recibir un valor el default va a ser '10'
       allowNull: false
@@ -45,7 +45,7 @@ module.exports = (sequelize) => {
       validate:{
         isNumeric: true,
         min: 1,
-        max: 999
+        max: 500
       },
       defaultValue: 10,// En caso de no recibir un valor el default va a ser '10'
       allowNull: false
@@ -55,7 +55,7 @@ module.exports = (sequelize) => {
       validate:{
         isNumeric: true,
         min: 1,
-        max: 999
+        max: 500
       },
       defaultValue: 10,// En caso de no recibir un valor el default va a ser '10'
       allowNull: false
@@ -65,7 +65,7 @@ module.exports = (sequelize) => {
       validate:{
         isNumeric: true,
         min: 1,
-        max: 999
+        max: 100
       },
       defaultValue: 10,// En caso de no recibir un valor el default va a ser '10'
       allowNull: false,
@@ -80,7 +80,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     sprite:{
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, 
       defaultValue: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/d7621acf3e5b732050acd51c2f16cdba/large.gif",
       validate:{
         isUrl: true

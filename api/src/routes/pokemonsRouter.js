@@ -9,11 +9,11 @@ const {
 } = require('../controllers/pokemonsController');
 
 
-const { validatePokemon } = require("../middleware");
+const { validateCreatePokemon } = require("../middleware");
 
 pokemonsRouter.get('/', getPokemons )
 pokemonsRouter.get('/:id', getPokemon )
-pokemonsRouter.post('/', validatePokemon, createPokemon )  //De esta forma protegemos nuestro controlador de una request que esta mal. Si la request esta mal, que no llegue al  controlador  
+pokemonsRouter.post('/', validateCreatePokemon, createPokemon )  //De esta forma protegemos nuestro controlador de una request que esta mal. Si la request esta mal, que no llegue al  controlador  
 //el controlador es el que maneja el endpoint 
 
 module.exports = pokemonsRouter;
