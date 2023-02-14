@@ -1,0 +1,28 @@
+*{
+    font-family:'Times New Roman', Times, serif;
+}
+
+.card{
+    background-color: #3baea0;
+    cursor: pointer;
+    box-shadow: 10px 7px 16px 6px rgba(67, 13, 13, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 10em;
+    height: fit-content;
+    padding: 1em;
+    color: rgb(0, 0, 0);
+    margin-left: 50px;
+    margin-bottom: 40px;
+}
+.lk{
+    text-decoration: none;
+}
+
+.name{
+color: black;
+}
+
+.types{
+color: black;
+}

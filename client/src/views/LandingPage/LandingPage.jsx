@@ -12,7 +12,7 @@ const LandingPage = () => {
         </div>
         <div className={styles.container}>
         <Link className={styles.link} to={"/home"} >
-        <button className={styles.button}>HOME</button>
+        <button className={styles.button}>START PAGE</button>
         </Link>
         </div>
         </div>
