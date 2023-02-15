@@ -2,7 +2,7 @@
     font-family: 'Times New Roman', Times, serif;
 }
 .cont{
-    background-color: #0a7ecb;
+    background-color: #0D131A;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -11,8 +11,9 @@
     height: 100vh;
 }
 .h1{
-    
+    color: #FFFFFF;
     position: absolute;
+    font-size: 34px;
     top: 0;
     left: 50%; /* para centrar horizontalmente */
     transform: translateX(-50%); /* para centrar horizontalmente */
@@ -21,13 +22,13 @@
 .form{
     width: 80%;
     height: 80%;
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 15px 5px 15px 5px rgba(255, 225, 0, 0.4);
     border-radius: 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-content: space-around;
     align-items: center;
-    background-color: rgba(163, 249, 25, 0.719);
+    background-color: #FFE100;
     backdrop-filter: blur(5px);
     position: absolute;
     top: 100px; /* ajustar según sea necesario */
@@ -38,19 +39,19 @@
 .inputCont {
     text-transform: uppercase;
     font-size: 1.4rem;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    color: rgb(70, 70, 70);
+    color: #E50012;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .input{
-    background-color: beige;
+    background-color: rgb(220, 245, 231);
     width: 80%;
     margin: 0.5rem;
     height: 2rem;
     border: none;
+    font-size: 20px;
     border-radius: 2rem;
 }
 
@@ -65,10 +66,10 @@
 }
 
 .btn{
-    width: 30%;
-    font-size: 1rem;
-    font-family:"Roboto", sans-serif;
-    background-color: rgba(46, 84, 128, 0.89);
+    width: 40%;
+    font-size: 22px;
+    height: 30px;
+    background-color: #0D131A;
     border: 1px solid black ;
     color: white;
     border-radius: 1rem;
@@ -82,7 +83,7 @@
     align-items: center;
     width: 100%;
     justify-content: space-around;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+
     display: flex;
 }
 
@@ -91,9 +92,18 @@
     height: 2rem;
     justify-content: space-evenly;
     align-items: center;
-    background-color: rgba(0, 0, 255, 0.37);
+    background-color: #0D131A;
     width: 40%;
     border: 1px solid black ;
     color: white;
+    font-size: 15px;
     border-radius: 1rem;
+}
+
+.typ{
+    font-size: 25px;
+}
+
+.ty{
+    font-size: 18px;
 }

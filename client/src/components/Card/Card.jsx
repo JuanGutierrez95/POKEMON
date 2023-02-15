@@ -12,7 +12,7 @@ const Card = ({id, name, sprite, types}) => {
             <img src={sprite} alt="img not found" widht="150px" height="150px" />
             <br/>
             <h3 className={styles.types} >{types}</h3>
-        </Link>
+        </Link>    
         </div>
     )
 }

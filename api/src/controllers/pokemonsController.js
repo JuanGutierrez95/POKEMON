@@ -6,7 +6,7 @@ const getPokemons = async ( req, res )=>{
     const pokemonsAll = await getAllPokemons();
     if( name ){
         const pokemonName = pokemonsAll.filter((p) => p.name.toLowerCase().includes(name.toLowerCase()));
-        pokemonName.length ? res.status(200).json(pokemonName) : res.status(404).send(`Pokemon not found for ${name} `);
+        pokemonName.length > 0 ? res.status(200).json(pokemonName) : res.status(200).send([]);
     }else{
         res.status(200).json(pokemonsAll);
     }
@@ -16,8 +16,8 @@ const getPokemon = async ( req, res ) =>{
     const { id } = req.params;
     const pokemonsAll = await getAllPokemons();
     if( id ){
-        const pokemonId = pokemonsAll.filter((p) => p.id == id);
-        pokemonId.length ? res.status(200).json(pokemonId) : res.status(404).send(`Pokemon not found for ${id}`)
+        const pokemonId = pokemonsAll.find((p) => p.id == id);
+        pokemonId ? res.status(200).json(pokemonId) : res.status(404).send(`Pokemon not found for ${id}`)
     }
 }
 
@@ -53,8 +53,10 @@ const createPokemon = async ( req, res )=>{
 
 
 
+
 module.exports = {
     getPokemons,
     getPokemon, 
-    createPokemon
+    createPokemon,
+    
 }

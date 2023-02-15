@@ -129,7 +129,7 @@
     display: flex;
     position:relative;
     float: right;
-    margin-left: 500px;
+    margin-left: 200px;
     bottom: 526px;
     font-size:20px;
     padding:9px 39px;
@@ -159,6 +159,17 @@
 	background-color:#378de5;
 }
 
+.deleteBtn{
+height: 40px;
+    width: 100px;
+    margin-left: 170px;
+    border: 1px solid red;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    bottom: 70px;
+    cursor: pointer;
+}
 
 /*
 .height{

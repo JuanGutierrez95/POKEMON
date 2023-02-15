@@ -8,16 +8,12 @@ const SearchBar = () => {
 
 const dispatch = useDispatch();
 
-
 const [name, setName] = useState("")
-
 
 const handleInputChange = (e) => {
   e.preventDefault()
   setName(e.target.value)
-
 }
-
 
 const handleSubmit = (e) => {
   e.preventDefault()

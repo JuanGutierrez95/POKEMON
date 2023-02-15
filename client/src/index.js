@@ -8,7 +8,7 @@ import store from './redux/store';
 
 
 ReactDOM.render(
-  <Provider store={store} > {/*Envolver con Provider, porque sino redux no funciona */}
+  <Provider store={store} > 
   <React.StrictMode>
     <App />
   </React.StrictMode>

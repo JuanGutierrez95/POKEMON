@@ -8,6 +8,7 @@ import {
     FILTER_CREATED,
     ORDER_BY_ALPHABETICO,
     ORDER_BY_ATTACK,
+    BY_RELOAD,
     } 
     from "../actions/actionsTypes"
 
@@ -17,82 +18,91 @@ import {
 const initialState = {
     pokemons : [],
     allPokemons: [],
-    detail: [],
-    types: []
+    detail: {},
+    types: [],
+    error: [],
+
 }
-//el reducer es el unico que puede modificar el state global
+
 const rootReducer = ( state = initialState, action ) => {
-    switch(action.type) { //Switch: ante un pedido, hago uno u otro, cuando no se cumple ninguno tenemos default
-        case GET_POKEMONS:  //I
+    switch(action.type) { 
+        case GET_POKEMONS: 
             return{
                 ...state,
-                pokemons: action.payload, // en pokemons que es un array vacio, manda todo lo que te mandre GET_POKEMONS
-                allPokemons: action.payload//añado todos los pokemons en allPokemons
+                pokemons: action.payload,
+                allPokemons: action.payload,
+            
             }
-            case GET_NAME_POKEMONS: //VII
-                return{//pokemons porque es el arreglo que estamos renderizando. siemore voy a trabajar sobre lo que estoy renderizando, el search es un filtrado que lo hicimos en el backend
+            case GET_NAME_POKEMONS: 
+            if (action.payload.length === 0) {
+                return {
+                  ...state,
+                  pokemons: action.payload,
+                  error: [{ message: "Not matches found" }],
+                };
+              } else {
+                return {
+                  ...state,
+                  pokemons: action.payload,
+                  error: [],
+                };
+              }
+              case BY_RELOAD:
+                return {
                     ...state,
-                    pokemons: action.payload
+                    detail: action.payload
                 }
 
             case GET_DETAIL:    
             return {
-                    ...state, //lo ponemos en un nuevo state,en un array vacio detail[]
+                    ...state, 
                     detail: action.payload
                 
                 }
 
                 case POST_POKEMON:
                     return {
-                        ...state //devolveme como esta, porque voy a crear en  otra nueva  ruta
+                        ...state 
                     }
 
-                    case GET_TYPES: //V
+                    case GET_TYPES: 
                 return{
-                    ...state, //hacemos una copia, y a la copia cambiamos esa parte, siempre un cambio en el state global implica hacer una copia que va a tener una referencia, para vamos a retornar un objeto nuevo.   Pero no modificamos el state global. 
+                    ...state,
                     types: action.payload
                 }
 
-            case FILTER_POKEMONS_BY_TYPE: //II
+            case FILTER_POKEMONS_BY_TYPE: 
                 const allPokemons = state.allPokemons;
-                const typeFiltered = action.payload === "all" ? allPokemons :
-                allPokemons.filter( p => p.types.map( p => p.name ).includes( action.payload ))
-                console.log(typeFiltered, 'soy el filter_by_type');
+                const filterPokemons = allPokemons.filter( p => p.types.map( p => p.name ).includes( action.payload ))
+                const typeFiltered = action.payload === "all" ? allPokemons : filterPokemons 
                 return{
                     ...state,
-                    pokemons: typeFiltered
+                    pokemons: typeFiltered,
+                    error : typeFiltered.length === 0 && [{message: "Not found by type"}]
                 }
-            /*case FILTER_BY_TYPE: // II
-              const allPokemons = state.allPokemons
-                const typesFiltered = action.payload === "all" ? allPokemons : allPokemons.filter(el => el.types === action.payload ) 
-                return {
-                ...state, //me traigo el state completo
-                pokemons: typesFiltered //hacemos concatenacion pokemons and types
-            
-            }*/
-            case FILTER_CREATED: //III
+            case FILTER_CREATED: 
                 const allPoke = state.allPokemons
                 const createdFilter = action.payload === 'created' ?
                 allPoke.filter(e => e.createdInDb)
                   : allPoke.filter(e => !e.createdInDb)
                   console.log('Creado por db', createdFilter.length)  
             return{
-                ...state, //devuelve un copia del estado, en la que modificamos en la parte que nos interesa.
+                ...state, 
                 pokemons: action.payload === "all" ? allPoke : createdFilter
             }
-            case ORDER_BY_ALPHABETICO: //IV
+            case ORDER_BY_ALPHABETICO:
                 let sortedArr = action.payload === 'asc' ? 
-                state.pokemons.sort(function(a, b){ //accedemos al state.pokemons que es el que se esta renderizando 
-                    //el sort compara dos valores
+                state.pokemons.sort(function(a, b){ 
+                    
                     if(a.name > b.name){ 
                     return 1;
                 }
                 if(b.name > a.name){
                     return -1;
                 }
-                return 0; //devuelve igual
+                return 0; 
             }) :
-            //ejecuto 2 sort y ordenar de menor a mayor o mayor a menor
+            
             state.pokemons.sort(function(a, b){
                 if(a.name > b.name){
                     return -1;
@@ -104,7 +114,7 @@ const rootReducer = ( state = initialState, action ) => {
             })
             return{
                 ...state,
-                pokemons: sortedArr //ahora vamos a dispatchear al home
+                pokemons: sortedArr 
             }
             //VI
             case ORDER_BY_ATTACK : 
@@ -131,7 +141,8 @@ const rootReducer = ( state = initialState, action ) => {
                 ...state,
                 pokemons: sortAtt
             }
-                default: //sin default el primer state no se toma bien
+        
+                default: 
             return state;
     }
 }

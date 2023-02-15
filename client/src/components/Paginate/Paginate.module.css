@@ -15,8 +15,8 @@
     outline: none;
     border-radius: 5px;
     border: none;
-    background-color: #343a40;
-    color: aliceblue;
+    background-color: #E50012;
+    color: rgb(255, 255, 255);
     margin-right: 50px; /* Valor aumentado */
     
     margin-bottom: 10px;
@@ -25,8 +25,8 @@
 }
 
 .btn:hover {
-    background-color: #c4c4c4;
-    color: #000000
+    
+    background-color: #000000
 }
 
 /*

@@ -7,21 +7,20 @@ import styles from "./PokemonCreated.module.css"
 
 
 const PokemonCreated = () => {
-  /******DISPATCH*******/
+
   const dispatch = useDispatch()
   
-  /*******HISTORY*************/
-  const history = useHistory() //el historyPush es basicamente una funcion que lo que hace es redirigirme a la ruta que yo le diga 
+
+  const history = useHistory() 
   
-  /******INITIALSTATE***************/
-  const types = useSelector((state) => state.types) //Como em traigo el state? Me traigo los types
+
+  const types = useSelector((state) => state.types) 
   
-  /*********ERRORS**********************/
-  const [errors, setErrors] = useState({})  //luego de la funcion validate, me genero un state local, que va ser un objeto vacio
   
-  /*************USESTATE AND POSTPOKEMON********************/
-  //Que voy a necesitar para crear mi personaje? que tiene que a ver? renderizo en la pagina? El formulario y ese formulario donde me lo voy a guardar? en un state
-  const [ input, setInput] = useState({//le paso lo que necesita el post
+  const [errors, setErrors] = useState({})  
+  
+  
+  const [ input, setInput] = useState({
     name: "",  
     hp: "",
     attack: "",
@@ -30,30 +29,29 @@ const PokemonCreated = () => {
     height: "",
     weight: "",
     sprite: "",
-    types: [],//lo seteo en un array, porque si lo seteo en string, no me va a dejar crear mas types
+    types: [],
   })
 
 
-  /******MANEJO DE CAMBIO INPUT***********************/
-  const handleChange = (e) => { //va ir manejando cada vez que ccambiemos el input
-    setInput({  //que tengo que ir cambiando? ir guardando las cosas que el usuario va escribiendo en el input, en mi state input.  A medida que yo voy escribiendo mi state input va recibiendo y va guardando, en e.target.name : e.target.value
-    ...input,  //setea el state
-      [e.target.name] : e.target.value //agrego e.target.value de lo que este modificando. El e.target.value va a tomar alguno de estos input name, hp, attack, speed etc y lo va a ir modificando dependiendo de lo que este escrito, le pasamos el handleChange a todos los inputs  
+
+  const handleChange = (e) => { 
+    setInput({
+    ...input,  
+      [e.target.name] : e.target.value
   })  
-  /**********SETEEAME MY ERRORS PASANDO LA FUNCION VALIDATION**************/
-    setErrors(validate({ //venimos del setErrors con el useState que empieza con un objeto vacio.   Seteeame mi setErrors pasandole la funcion validate
-      ...input, //con el state input y 
-      [e.target.name] : e.target.value // el e.target.name en el e.target.value
+
+    setErrors(validate({ 
+      ...input, 
+      [e.target.name] : e.target.value 
     }))
     console.log({input})
   }
 
-  /******AGREGAMOS LO QUE VAMOS SELECCIONANDO Y CONCATENAMOS MIENTRAS SE VAN AGREGANDO A UN ARRAY, LO QUE SELECCIONAMOS******************/
   const handleSelect = (e) => {
     e.preventDefault()
-    input.types.length < 2 && !input.types.includes(e.target.value) ? setInput({                                //en el estado que guardo todo
+    input.types.length < 2 && !input.types.includes(e.target.value) ? setInput({                              
       ...input,
-      types : [...input.types , e.target.value] //es un arreglo lo que ya habia le paso, traeme lo que ya habia y concatename con e.target.value. Es ir agregando en un arreglo lo que vaya seleccionando  
+      types : [...input.types , e.target.value] 
     }) : alert('Maximun two types')
 }
 
@@ -88,26 +86,26 @@ const PokemonCreated = () => {
 }
 
 
-  const handleDelete = (type) => {  //seteo el input
+  const handleDelete = (type) => {  
   setInput({
-    ...input,  //traigo copia del input, que tiene lo todo lo del setInput ({name, hp, defense etc})
-    types: input.types?.filter(t => t !== type ) //va a agarrar y me va a devolver el state nuevo sin eese elemento que yo clickee 
+    ...input,  
+    types: input.types?.filter(t => t !== type ) 
   })
 
 }
   
-/**********EXPRESION REGULAR*****************/
+
 const isString = (name) => /^\d+$/.test(name) ? true : false;
 const isNumber = (number) => /^\D+$/.test(number) ? true: false;
 
 
-/**************VALIDATION WITH JAVASCRIPT***************/
-//value coincide con lo que me traiga el back, para que se haga correctamente en insomnia postman.
-// input name input hp etc. lo tengo que hacer matchear a los parametros de mi post
-  const validate = (input) => {//input es mi estado local
+
+
+
+  const validate = (input) => {
   let errors = {}
-  if(!input.name.trim()){ //si en mi state local no hay nada, entonces en mi
-    errors.name = "A name is required"   //objeto voy a requerir un string
+  if(!input.name.trim()){ 
+    errors.name = "A name is required"   
   }else if(isString(input.name)) errors.name = "Only the use of letters!";
   
   else if(!input.hp) errors.hp = 'Needs completing';
@@ -196,20 +194,27 @@ useEffect(() => {
             <p>{errors.defense}</p>
           )}
         </div>
-        <div className={styles.inputCont} >
-          <label>Speed:</label>
-          <input
+
+  <div className={styles.inputCont}>
+          <label>Weight:</label>
+          <input 
           className={styles.input}
           type="number"
-          value={input.speed}
-          name = "speed"
-          placeholder='1 - 500'
+          value={input.weight}
+          name ="weight"
+          placeholder='1 - 1000'
           onChange={(e) => handleChange(e)}
           />
-          {errors.speed && (
-            <p>{errors.speed}</p>
+          {errors.weight && (
+            <p>{errors.weight}</p>
           )}
         </div>
+
+        
+
+
+
+
         <div className={styles.inputCont} >
           <label>Height:</label>
           <input 
@@ -224,20 +229,25 @@ useEffect(() => {
             <p>{errors.height}</p>
           )}
         </div>
-        <div className={styles.inputCont}>
-          <label>Weight:</label>
-          <input 
-          className={styles.inputCont}
+
+<div className={styles.inputCont} >
+          <label>Speed:</label>
+          <input
+          className={styles.input}
           type="number"
-          value={input.weight}
-          name ="weight"
-          placeholder='1 - 1000'
+          value={input.speed}
+          name = "speed"
+          placeholder='1 - 500'
           onChange={(e) => handleChange(e)}
           />
-          {errors.weight && (
-            <p>{errors.weight}</p>
+          {errors.speed && (
+            <p>{errors.speed}</p>
           )}
         </div>
+
+
+
+      
         <div className={styles.inputCont} >
           <label>Image:</label>
           <input 
@@ -252,9 +262,12 @@ useEffect(() => {
             <p>{errors.sprite}</p>
           )}
         </div>  
-        <div>
-          <label>Types:</label>
+        <div className={styles.typ} >
+          <label>Types: </label>
+          
           <select onChange={(e) => handleSelect(e)} 
+          
+          className={styles.ty}
           name="types"
           id="types"
           required>
@@ -267,7 +280,7 @@ useEffect(() => {
             </select>
             </div>
       <div className={styles.deleteType}>
-      {input.types.map((e, index) => { /*input es mi state local, el state local va a tener todos mis types que voy seleccionando */
+      {input.types.map((e, index) => { 
         return(
           <div className={styles.type}  key={index} >
           <p className={styles.Ptype}>{e}</p>

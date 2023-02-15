@@ -11,7 +11,7 @@ function App() {
     <div className="App">
     <Switch> 
       <Route exact path="/" component={LandingPage}/>
-      <Route exact path="/home" component={Home}/> {/*El to es para los links, el route es para los path */} {/*renderiza el componente Home */} {/*Route para definir la ruta principal de la aplicación, que apunta a / */}
+      <Route exact path="/home" component={Home}/> 
       <Route exact path="/pokemonCreate" component={PokemonCreated}/>
       <Route exact path="/pokemonDetail/:id" component={Detail}/>
     </Switch>

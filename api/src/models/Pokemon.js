@@ -80,7 +80,7 @@ module.exports = (sequelize) => {
     },
     sprite:{
       type: DataTypes.STRING, 
-      defaultValue: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/d7621acf3e5b732050acd51c2f16cdba/large.gif",
+      defaultValue: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/d7621acf3e5b732050acd51c2f16cdba/large.gif", //MODIFICAR
       validate:{
         isUrl: true
       },

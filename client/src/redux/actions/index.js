@@ -8,7 +8,7 @@ import {
     FILTER_CREATED, 
     ORDER_BY_ALPHABETICO,
     ORDER_BY_ATTACK,
-    
+    BY_RELOAD,
     } from "./actionsTypes";
 
 export const getPokemons = () => { 
@@ -25,9 +25,11 @@ export const getNamePokemons = (name) => {
     return async function(dispatch){
         try {
             let json = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+            console.log(json.data)
             return dispatch({
                 type: GET_NAME_POKEMONS,
                 payload: json.data
+                
             })
         } catch (error) {
             console.log({error: error.message})
@@ -52,7 +54,6 @@ export const getDetail = (id) => {
 export const postPokemon = (payload) => {
     return async function(dispatch){
         const response = await axios.post("http://localhost:3001/pokemons", payload) 
-        console.log({response})
         return response
     }
 }
@@ -67,6 +68,8 @@ export const getTypes = () => {
         })
     }
 }
+
+
 
 
 export const filterPokemonsByType = (payload) => { 
@@ -99,3 +102,12 @@ export const orderByAttack = (payload) => {
         payload
     }
 }
+
+export const byReload = (payload) => {
+    return {
+        type: BY_RELOAD,
+        payload
+    }
+}
+
+
