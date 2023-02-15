@@ -10,13 +10,13 @@ import {
     ORDER_BY_ATTACK,
     } 
     from "../actions/actionsTypes"
-//EL REDUCER DEBE SER SIEMPRE UNA FUNCION PURA
 
 
-//si no le estoy pasando el reducer un state xq no tengo, que tome por defecto el primer state yo lo voy a escribir, de ahi en adelante ya tendremos un state que podremos trabajar.
+
+
 const initialState = {
     pokemons : [],
-    allPokemons: [], //una copia de traer los pokemons
+    allPokemons: [],
     detail: [],
     types: []
 }

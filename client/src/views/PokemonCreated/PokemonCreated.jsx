@@ -2,8 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { postPokemon, getTypes } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom';
+import styles from "./PokemonCreated.module.css"
 
 
 const PokemonCreated = () => {
@@ -136,13 +136,13 @@ useEffect(() => {
   }, [dispatch])
 
   return (
-    <div>
-      <Link to='/home'><button>Volver</button></Link>
-      <h1>Let's create a new Pokemon!</h1>
-      <form onSubmit={(e) => handleSubmit(e) } >
-        <div>
+    <div className={styles.cont}>
+      <h1 className={styles.h1} >Let's create a new Pokemon!</h1>
+      <form className={styles.form} onSubmit={(e) => handleSubmit(e) } >
+        <div className={styles.inputCont} >
           <label>Name: </label>
           <input
+          className={styles.input}
           type="text"
           value={input.name}
           name= "name"
@@ -154,9 +154,10 @@ useEffect(() => {
           )}
         </div>
       
-        <div>
+        <div className={styles.inputCont} >
           <label>Health Points: </label>
           <input
+          className={styles.input}
           type="number"
           value={input.hp}
           name = "hp"
@@ -167,9 +168,10 @@ useEffect(() => {
             <p>{errors.hp}</p>
           )}
           </div>
-          <div>
+          <div className={styles.inputCont} >
             <label>Attack:</label>
             <input
+            className={styles.input}
             type="number"
             value={input.attack}
             name = "attack"
@@ -180,9 +182,10 @@ useEffect(() => {
             <p>{errors.attack}</p>
           )}
         </div>
-        <div>
+        <div className={styles.inputCont} >
             <label>Defense:</label>
             <input
+            className={styles.input}
             type="number"
             value={input.defense}
             name = "defense"
@@ -193,9 +196,10 @@ useEffect(() => {
             <p>{errors.defense}</p>
           )}
         </div>
-        <div>
+        <div className={styles.inputCont} >
           <label>Speed:</label>
           <input
+          className={styles.input}
           type="number"
           value={input.speed}
           name = "speed"
@@ -206,9 +210,10 @@ useEffect(() => {
             <p>{errors.speed}</p>
           )}
         </div>
-        <div>
+        <div className={styles.inputCont} >
           <label>Height:</label>
           <input 
+          className={styles.input}
           type="number"
           value={input.height}
           name = "height"
@@ -219,9 +224,10 @@ useEffect(() => {
             <p>{errors.height}</p>
           )}
         </div>
-        <div>
+        <div className={styles.inputCont}>
           <label>Weight:</label>
           <input 
+          className={styles.inputCont}
           type="number"
           value={input.weight}
           name ="weight"
@@ -232,9 +238,10 @@ useEffect(() => {
             <p>{errors.weight}</p>
           )}
         </div>
-        <div>
+        <div className={styles.inputCont} >
           <label>Image:</label>
           <input 
+          className={styles.input}
           type="url"
           value={input.sprite}
           name="sprite"
@@ -259,30 +266,21 @@ useEffect(() => {
             }
             </select>
             </div>
-        <ul>
-        {input.types.map((t, i) => {
-      let separator = ', ';
-      if (i === input.types.length - 1) {
-      separator = '';
-      }
-      return t.charAt(0).toUpperCase() + t.slice(1) + separator;
-      })}
-      </ul>
-      <div>
+      <div className={styles.deleteType}>
       {input.types.map((e, index) => { /*input es mi state local, el state local va a tener todos mis types que voy seleccionando */
         return(
-          <div key={index} >
-          <p>{e}</p>
-          <button onClick={() => handleDelete(e)} >X</button>
+          <div className={styles.type}  key={index} >
+          <p className={styles.Ptype}>{e}</p>
+          <button className={styles.btn} onClick={() => handleDelete(e)} >X</button>
         </div>
           )
         })}
         </div>
-        <div>
-    <button type='submit'>Crear Pokemon</button>
-    <Link to='/home' >
-    <button>Volver</button>
-    </Link>
+<br/>
+
+        <div className={styles.footer}> 
+    <button className={styles.btn} type='submit'>Crear Pokemon</button>
+    <button className={styles.btn} onClick={() => history.push('/home')}>Volver</button>
         </div>
       </form>
     </div>

@@ -109,17 +109,13 @@ const Home = () => {
       <div className={styles.menuContainer} >
       <div id="menu">
         <ul>
-        
-
           <Link className={styles.Link} to='/pokemonCreate'>
         <button className={styles.homeButtons} >  Create Pokemon  </button>
         </Link>
-          
           {/********RENDERIZAMOS LA FUNCION HANDLE CLICK***********/}
       <button className={styles.homeButtons} onClick={e => {handleClick(e)}}> {/*Le paso el handleClick para cuando suceda esto, resetee los personajes */}
       Load All Pokemons
       </button>
-
       {/************RENDERIZAMOS COMPONENT SEARCHBAR**********/}
       <SearchBar />
         </ul>

@@ -11,35 +11,30 @@ import {
     
     } from "./actionsTypes";
 
-//El redux thunk sirve para trabajar la llamada asincrona 
-
- 
-//I
-export const getPokemons = () => { //I
+export const getPokemons = () => { 
     return async function(dispatch) {
-        let json = await axios.get("http://localhost:3001/pokemons")//le paso la url que me cree en la ruta en la base de datos
+        let json = await axios.get("http://localhost:3001/pokemons")
         return dispatch({
-            type: GET_POKEMONS, //es el papel que le dice a reducer que tiene que hacer
+            type: GET_POKEMONS, 
             payload: json.data
         })
     }
-} //Luego vamos al reducer
+} 
 
-//VII
 export const getNamePokemons = (name) => {
     return async function(dispatch){
         try {
-            let json = await axios.get(`http://localhost:3001/pokemons?name=${name}`)//json.data: que devuelva la ruta una vez que yo le asigne en name
+            let json = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
             return dispatch({
                 type: GET_NAME_POKEMONS,
-                payload: json.data//me va a devolver la accion, cuando ponemos en la barra de busqueda me va a devolver el name. o
+                payload: json.data
             })
         } catch (error) {
             console.log({error: error.message})
         }
     }
 }
-//IX
+
 export const getDetail = (id) => {
     return async function(dispatch){
         try {
@@ -53,43 +48,43 @@ export const getDetail = (id) => {
         }
     }
 }
-//VIII
+
 export const postPokemon = (payload) => {
     return async function(dispatch){
-        const response = await axios.post("http://localhost:3001/pokemons", payload) //el actions post, dispara una ruta post lo que quiero es crear el personaje,    
+        const response = await axios.post("http://localhost:3001/pokemons", payload) 
         console.log({response})
         return response
     }
 }
 
-//V
+
 export const getTypes = () => {
-    return async function(dispatch){ //que es dispatch? es dispatchear la instruccion get_types al reducer, para que el reducer lo reciba, lo lea vea que tenga que hacer y lo haga. Modifica el state global y esta modificacion de state global va a impactar en todos los componentes que esten suscriptos a este state global.    
+    return async function(dispatch){ 
         let json = await axios.get("http://localhost:3001/types")
         return dispatch({
             type: GET_TYPES,
-            payload: json.data //con dispatch le damos una infomracion extra para que cambie
+            payload: json.data 
         })
     }
 }
 
-// II
-export const filterPokemonsByType = (payload) => { //lo que llega de payload es basicamente desde el componente
+
+export const filterPokemonsByType = (payload) => { 
     return {
         type: FILTER_POKEMONS_BY_TYPE,
         payload
     }
 }
 
-//III
-export const filterCreated = (payload) => { //payload es la opcion que queremos renderizar
+
+export const filterCreated = (payload) => { 
     return{
         type: FILTER_CREATED,
         payload
     }
 }
 
-//IV
+
 export const orderByAlphabetico = (payload) => {
     return{
         type: ORDER_BY_ALPHABETICO,
@@ -104,6 +99,3 @@ export const orderByAttack = (payload) => {
         payload
     }
 }
-
-
-

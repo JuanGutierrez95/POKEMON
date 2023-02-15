@@ -2,7 +2,7 @@ import React from 'react'
 import poke from '../../GIFs/pokeball.gif'
 import styles from "./Loading.module.css"
 
-/********COMPONENT LOADING QUE REFLEJA CUANDO SE CARGA LA PAGINA******/
+
 const Loading = () => {
   return (
     <div className={styles.container} >

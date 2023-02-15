@@ -13,7 +13,7 @@
     box-shadow: 5px 5px 5px 3px #0000001e, inset 4px 4px 15px 0px #38298a13, 10px -2px 15px 12px rgba(24, 29, 95, 0.089);
     background-color: rgba(168, 220, 236, 0.322);
     width: 800px;
-    height: 480px;
+    height: 500px;
     justify-content:space-between;
     display:inline-block;
     text-align: center;
@@ -27,7 +27,8 @@
     margin-top:auto;
     margin-bottom: auto;
     position: relative;
-    font-size:22px;
+    top: 0px;
+    font-size:20px;
     padding:9px 39px;
     text-decoration:none;
     text-shadow: 3px -3px 11px rgb(0, 0, 0);
@@ -36,7 +37,7 @@
 .sprite{
     display: flex;
     position: relative;
-    top: 25px;
+    top: 20px;
     justify-content: center;
     
 }
@@ -44,7 +45,7 @@
 .hp{
     display: flex;
     position:relative;
-    bottom: 343px;
+    bottom: 399px;
     font-size:20px;
     padding:9px 39px;
     text-decoration:none;
@@ -55,7 +56,7 @@
 .id{
     display: flex;
     position:relative;
-    bottom: 14px;
+    bottom: -40px;
     font-size:20px;
     padding:9px 39px;
     text-decoration:none;
@@ -67,7 +68,7 @@
     display: flex;
     position:relative;
     float: right;
-    bottom: 437px;
+    bottom: 493px;
     font-size: 20px;
     padding: 9px 39px;
     text-decoration: none;
@@ -79,7 +80,7 @@
 .defense{
     display: flex;
     position:relative;
-    bottom: 355px;
+    bottom: 381px;
     font-size:20px;
     padding:9px 39px;
     text-decoration:none;
@@ -90,7 +91,7 @@
 .speed{
     display: flex;
     position:relative;
-    bottom: 375px;
+    bottom: 365px;
     font-size:20px;
     padding:9px 39px;
     text-decoration:none;
@@ -102,7 +103,7 @@
     display: flex;
     position:relative;
     float: right;
-    bottom: 544px;
+    bottom: 569px;
     font-size: 20px;
     left: 0px;
     padding: 9px 39px;
@@ -117,7 +118,7 @@
     position:relative;
     float: right;
     margin-left: 500px;
-    bottom: 563px;
+    bottom: 553px;
     font-size:20px;
     padding:9px 39px;
     text-decoration:none;
@@ -129,7 +130,7 @@
     position:relative;
     float: right;
     margin-left: 500px;
-    bottom: 581px;
+    bottom: 526px;
     font-size:20px;
     padding:9px 39px;
     text-decoration:none;

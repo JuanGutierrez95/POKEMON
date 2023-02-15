@@ -8,20 +8,20 @@ const SearchBar = () => {
 
 const dispatch = useDispatch();
 
-/***********STATE LOCAL*********/
-const [name, setName] = useState("")//state local
 
-/******INPUT CHANGE******/
+const [name, setName] = useState("")
+
+
 const handleInputChange = (e) => {
   e.preventDefault()
-  setName(e.target.value) //el value del input va a tomar el value del useState.  
-//  console.log({name})
+  setName(e.target.value)
+
 }
 
-/*******SUBMIT********/
+
 const handleSubmit = (e) => {
   e.preventDefault()
-  if(!name.length){ //dispatcho la accion, que hace name va ser mi state local, voy a ir guardando lo que esta typeando el usuario en mi state local name. Lo que yo tengo en mi state local de repente va a llegar despues a mi accion que va a llamar al back, que es? lo que esta escribiendo el usuarip 
+  if(!name.length){
     alert("Please enter a pokemon")
   }else{
   dispatch(getNamePokemons(name))
