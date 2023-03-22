@@ -10,14 +10,14 @@ const Paginate = ({allPokemons, pokemonsPerPage,  paginado}) => {
 
 
   return (
-    <nav className={styles.paginate} >
+    <div className={styles.paginate} >
         { pageNumbers && pageNumbers.map((number) => { 
           return( 
           <div key={number} className={styles.item} >
           <button className={styles.btn} onClick={() => paginado(number)}>{number}</button>
           </div>
         )})}
-    </nav>
+    </div>
   )
 }
 

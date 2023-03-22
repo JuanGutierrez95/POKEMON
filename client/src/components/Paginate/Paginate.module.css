@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     gap: 5px;
-    margin-top: 5px;
+    margin-top: -15px;
 }
 .btn {
     float: inline-end;
@@ -17,8 +17,8 @@
     border: none;
     background-color: #E50012;
     color: rgb(255, 255, 255);
-    margin-right: 50px; /* Valor aumentado */
-    
+    margin-right: 15px; /* Valor aumentado */
+    margin-left: 0px;
     margin-bottom: 10px;
     padding-top: 10px;
     top: 10px;

@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.407c02a9.chunk.css",
+    "main.js": "/static/js/main.00525769.chunk.js",
+    "main.js.map": "/static/js/main.00525769.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.cda7c7e2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.cda7c7e2.js.map",
+    "static/js/2.1646c4e3.chunk.js": "/static/js/2.1646c4e3.chunk.js",
+    "static/js/2.1646c4e3.chunk.js.map": "/static/js/2.1646c4e3.chunk.js.map",
+    "static/js/3.daa6effb.chunk.js": "/static/js/3.daa6effb.chunk.js",
+    "static/js/3.daa6effb.chunk.js.map": "/static/js/3.daa6effb.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.407c02a9.chunk.css.map": "/static/css/main.407c02a9.chunk.css.map",
+    "static/js/2.1646c4e3.chunk.js.LICENSE.txt": "/static/js/2.1646c4e3.chunk.js.LICENSE.txt",
+    "static/media/LogoPokemon.ccdba086.jpg": "/static/media/LogoPokemon.ccdba086.jpg",
+    "static/media/LandingPage.module.css": "/static/media/background.460f3604.jpg",
+    "static/media/Detail.module.css": "/static/media/detail.cb4003cf.jpg",
+    "static/media/pokeball.f5c0a877.gif": "/static/media/pokeball.f5c0a877.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cda7c7e2.js",
+    "static/js/2.1646c4e3.chunk.js",
+    "static/css/main.407c02a9.chunk.css",
+    "static/js/main.00525769.chunk.js"
+  ]
+}

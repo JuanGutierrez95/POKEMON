@@ -5,8 +5,8 @@ const { Pokemon, Type } = require("../db");
 
 const getApiPokemons = async () => {
     try {
-        const firstPage = await axios.get("https://pokeapi.co/api/v2/pokemon") 
-    const secondPage = await axios.get("https://pokeapi.co/api/v2/pokemon?offset=20&limit=20")  
+        const firstPage = await axios.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=226") 
+    const secondPage = await axios.get("https://pokeapi.co/api/v2/pokemon/?offset=226&limit=225")  
     const linkTotal = firstPage.data.results.concat(secondPage.data.results)
     const infoApi = linkTotal.map((pokemon) => axios.get(pokemon.url))
     let infoPokemons = Promise.all(infoApi).then((url) => { 

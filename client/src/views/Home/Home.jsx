@@ -9,7 +9,6 @@ import {
   filterCreated,
   orderByAlphabetico,
   orderByAttack,
-  byReload
   } from '../../redux/actions' 
 import Loading from '../../components/Loading/Loading'
 import Card from '../../components/Card/Card' 
@@ -32,7 +31,7 @@ const Home = () => {
   
 
   const [ currentPage, setCurrentPage ] = useState(1); 
-  const [ pokemonsPerPage, /*setPokemonsPerPage*/ ] = useState(12); 
+  const [ pokemonsPerPage, /*setPokemonsPerPage*/ ] = useState(24); 
   const indexOfLastPokemon = currentPage * pokemonsPerPage 
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage
   const currentPokemons =  allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon);

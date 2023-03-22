@@ -5,7 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import axios from 'axios';
 
+//1ro: Cuando estoy en desarrollo
+//axios.defaults.baseURL = "http://localhost:3001"
+
+//2do:Cuando estoy en produccion
+axios.defaults.baseURL = "https://pokemonback-end-production.up.railway.app"
 
 ReactDOM.render(
   <Provider store={store} > 
